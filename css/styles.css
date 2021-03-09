@@ -1,0 +1,63 @@
+/*CSS styles*/
+#logo{
+    width: 50px;
+    height: auto;
+    float: left;
+}
+
+.header{
+    padding-top: 10px;
+    background-color: rgba(19,44,97,0.81);
+    font-family: 'Brush Script MT', serif;
+    text-align: center;
+    color: #f1f1f1;
+}
+
+.row.content {
+    min-height: 100%;
+    height: 565px;
+    color:rgba(19,44,97,0.81);
+}
+.main-content {
+    padding-top: 10px;
+    background-color: white;
+    font-family: fantasy;
+    font-size: larger;
+    text-align: center;
+}
+
+.sidenav {
+    padding: 10px;
+    background-color: #f1f1f1;
+    height: 100%;
+    bottom: 0;
+}
+
+.hobbies{
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 100%;
+}
+
+.hobbies:hover {
+    border-color: #f1f1f1;
+}
+
+#footer {
+    clear:both;
+    position: absolute;
+    width: 100%;
+    background-color: cornsilk;
+    padding-top: 15px;
+
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 5px;
+    }
+    .row.content {height:auto;}
+}
