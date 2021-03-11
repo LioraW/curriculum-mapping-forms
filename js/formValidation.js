@@ -1,3 +1,22 @@
+var divStatus = {
+    usernameDiv: "default",
+    passwordDiv: "default",
+    repeatPasswordDiv: "default",
+    firstNameDiv: "default",
+    lastNameDiv: "default",
+    address1Div: "default",
+    address2Div: "default",
+    cityDiv: "default",
+    stateDiv: "default",
+    zipDiv: "default",
+    phoneDiv: "default",
+    emailDiv: "default",
+    genderDiv: "default",
+    marriageStatus: "default",
+    DOBDiv: "default",
+
+};
+
 function matchPasswords() {
     var first = document.getElementById("password");
     var second = document.getElementById("repeatPassword");
@@ -162,4 +181,40 @@ function indicateSuccess (msgID, elementDivID) {
     if (submitBtn) {
         submitBtn.disabled = false;
     }
+}
+function resetForm () {
+    for (let key in divStatus) {
+        if (divStatus.hasOwnProperty(key)) {
+            //this assumes the keys are all the id's of each form div
+            var element = document.getElementById(key);
+
+            // set status
+            divStatus[key] = "default";
+
+            //remove green checkmarks
+            for (let el of element.getElementsByTagName("i")) {
+                if (!el.classList.contains("hide")) {
+                    el.classList.add("hide");
+                }
+            }
+
+            //remove error messages
+            for (let el of element.getElementsByTagName("span")) {
+                el.classList.remove("show");
+                if (!el.classList.contains("hide")) {
+                    el.classList.add("hide");
+                }
+            }
+
+            //set div to regular color
+            if (element.classList.contains("has-error")) {
+                element.classList.remove("has-error");
+            }else if (element.classList.contains("has-success")) {
+                element.classList.remove("has-success");
+            }
+
+            console.log(key + " -> " + divStatus[key]);
+        }
+    }
+
 }
