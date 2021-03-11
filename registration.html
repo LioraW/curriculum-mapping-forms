@@ -25,7 +25,6 @@
   <h1> All About Me</h1>
 </div>
 
-
 <div class="container-fluid">
   <div class="row content">
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 sidenav text-center">
@@ -33,6 +32,7 @@
       <p><a href="registration.html">Registration</a></p>
       <p><a href="animations.html">Animations</a></p>
     </div>
+
     <form method="POST" onsubmit="return checkForSuccess();">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="row content">
@@ -43,39 +43,49 @@
               <label for="username">Username:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="username" name="username" class="form-control"
-                     type="text" required="true"
+                     type="text" required
                      onblur="checkLengths(6,50,this,'usernameDiv', 'usernameError');">
-              <span id="usernameError" class="help-block hide">The username must be between 6 and 50 characters!</span>
+              <span id="usernameError" class="help-block hide">
+                The username must be between 6 and 50 characters!
+              </span>
             </div>
 
             <div class="form-group" id="passwordDiv">
               <label for="password">Password:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="password" name="password" class="form-control"
-                     type="password" required="true"
+                     type="password" required
                      onblur="checkLengths(8,50,this,'passwordDiv','passLengthErr');
                               checkPassword();
                               matchPasswords();">
               <span id="passwordError" class="help-block hide">
                 Your password must have 1 capital, 1 lowercase, 1 digit, and 1 special character.
               </span>
-              <span id="passLengthErr" class="help-block hide">Password must be between 8 and 50 characters.</span>
+              <span id="passLengthErr" class="help-block hide">
+                Password must be between 8 and 50 characters.
+              </span>
             </div>
 
             <div class="form-group" id="repeatPasswordDiv">
               <label for="repeatPassword">Repeat Password:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="repeatPassword" name="repeatPassword" class="form-control"
-                     type="password" required="true"
-                     onblur="matchPasswords();">
-              <span id="PassVerificationError" class="help-block hide">Your passwords do not match!</span>
+                     type="password" required
+                     onblur="checkLengths(8,50,this,'repeatPasswordDiv','passVerLengthErr');
+                             matchPasswords();">
+              <span id="PassVerificationError" class="help-block hide">
+                Your passwords do not match!
+              </span>
+              <span id="passVerLengthErr" class="help-block hide">
+                Password must be between 8 and 50 characters.
+              </span>
             </div>
 
             <div class="form-group" id="firstNameDiv">
               <label for="firstname">First Name:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="firstname" name="firstname" class="form-control"
-                     type="text" required="true"
+                     type="text" required
                      onblur="checkLengths(-1,50,this,'firstNameDiv','firstNameErr');">
               <span id="firstNameErr" class="help-block hide">Max 50 characters!</span>
             </div>
@@ -84,7 +94,7 @@
               <label for="lastname">Last Name:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="lastname" name="lastname" class="form-control"
-                     type="text" required="true"
+                     type="text" required
                      onblur="checkLengths(-1,50,this,'lastNameDiv','lastNameErr');">
             <span id="lastNameErr" class="help-block hide">Max 50 characters!</span>
             </div>
@@ -93,7 +103,7 @@
               <label for="address1">Address Line 1:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="address1" name="address1" class="form-control"
-                     type="text" required="true"
+                     type="text" required
                      onblur="checkLengths(-1,100,this,'address1Div','address1Err');">
               <span id="address1Err" class="help-block hide">Max 100 characters!</span>
             </div>
@@ -111,7 +121,7 @@
               <label for="city">City:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="city" name="city" class="form-control"
-                     type="text" required="true"
+                     type="text" required
                       onblur="checkLengths(-1,50,this,'cityDiv','cityErr');">
               <span id="cityErr" class="help-block hide">Max 50 characters!</span>
             </div>
@@ -122,7 +132,7 @@
             <div class="form-group" id="stateDiv">
               <label for="state">State:</label>
               <i class="fa fa-check fa-md hide"></i>
-              <select id="state" name="state" class="form-control" required="true"
+              <select id="state" name="state" class="form-control" required
                       onblur="checkLengths(-1,52,this,'stateDiv','');">
                 <option value="" selected="selected" hidden="hidden" disabled="disabled">
                   --Please Select--
@@ -185,7 +195,7 @@
               <label for="zip">Zip Code:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="zip" name="zip" class="form-control"
-                     type="text" required="true" placeholder="xxxxx or xxxxx-xxxx"
+                     type="text" required placeholder="xxxxx or xxxxx-xxxx"
                       onblur="checkLengths(5,10,this,'zipDiv','zipLengthErr');
                       adjustZip();">
               <span id="zipLengthErr" class="help-block hide">Must be between 5 and 10 digits!</span>
@@ -196,7 +206,7 @@
               <label for="phone">Phone Number:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="phone" name="phone" class="form-control"
-                     type=text" required="true" placeholder="xxx-xxx-xxxx"
+                     type="text" required placeholder="xxx-xxx-xxxx"
                       onblur="checkLengths(-1,12,this,'phoneDiv','phoneLengthErr');
                               adjustPhone();">
               <span id="phoneLengthErr" class="help-block hide">Max 12 characters!</span>
@@ -208,7 +218,7 @@
               <label for="email">Email:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="email" name="email" class="form-control"
-                     type="email" required="true" placeholder="x@x.x"
+                     type="email" required placeholder="x@x.x"
                       onblur="checkEmail();">
               <span id="emailVerError" class="help-block hide">Invalid Email!</span>
             </div>
@@ -216,10 +226,10 @@
             <div class="form-group" id="genderDiv">
               <label>Gender:</label>
               <i class="fa fa-check fa-md hide"></i><br>
-              <input type="radio" id="female" name="gender" value="female" required="true" maxlength="50"
+              <input type="radio" id="female" name="gender" value="female" required maxlength="50"
                       onclick="indicateSuccess('','genderDiv');">
               <label for="female">Female</label><br>
-              <input type="radio" id="male" name="gender" value="male" required="true" maxlength="50"
+              <input type="radio" id="male" name="gender" value="male" required maxlength="50"
                       onclick="indicateSuccess('','genderDiv');">
               <label for="male">Male</label><br>
             </div>
@@ -227,13 +237,13 @@
             <div class="form-group" id="marriageStatus">
               <label>Martial Status:</label>
               <i class="fa fa-check fa-md hide"></i><br>
-              <input type="radio" id="married" name="mstatus" value="married" required="true" maxlength="50"
+              <input type="radio" id="married" name="mstatus" value="married" required maxlength="50"
                      onclick="indicateSuccess('','marriageStatus')">
               <label for="married">Married</label><br>
-              <input type="radio" id="divorced" name="mstatus" value="divorced" required="true" maxlength="50"
+              <input type="radio" id="divorced" name="mstatus" value="divorced" required maxlength="50"
                      onclick="indicateSuccess('','marriageStatus')">
               <label for="divorced">Divorced</label><br>
-              <input type="radio" id="single" name="mstatus" value="single" required="true" maxlength="50"
+              <input type="radio" id="single" name="mstatus" value="single" required maxlength="50"
                      onclick="indicateSuccess('','marriageStatus')">
               <label for="single">Single</label><br>
             </div>
@@ -242,12 +252,15 @@
               <label for="DOB">Date of Birth:</label>
               <i class="fa fa-check fa-md hide"></i>
               <input id="DOB" name="DOB" class="form-control"
-                     type="date" required="true" oninput="indicateSuccess('','DOBDiv');">
+                     type="date" required oninput="indicateSuccess('','DOBDiv');">
             </div>
 
             <div class="form-group">
-              <input type="submit" value="Submit" id="submitBtn" disabled="true" >
+              <input type="submit" value="Submit" id="submitBtn" >
               <input type="reset" value="Reset" onclick="resetForm();">
+              <span id="submitErr" class="help-block hide">
+                There is still a field that has an error. Please correct it and try again.
+              </span>
             </div>
 
           </div>

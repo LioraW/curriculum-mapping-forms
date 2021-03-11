@@ -111,7 +111,7 @@ function adjustPhone () {
     }
 }
 
-function checkLengths (min, max, element, elementDivID, elementErrorID) {
+function checkLengths (min=-1, max, element, elementDivID, elementErrorID) {
     var inputLength = element.value.length;
 
     if (max && min && inputLength) {
@@ -137,7 +137,7 @@ function indicateError (msgID, elementDivID) {
         msg.classList.remove("hide");
         msg.classList.add("show");
     }
-    //make element div indicate error (red)
+
     if (elementDiv) {
         //make div red
         elementDiv.classList.remove("has-success");
@@ -151,11 +151,6 @@ function indicateError (msgID, elementDivID) {
 
     divStatus[elementDivID] = "has_error";
 
-    //Don't allow the user to submit invalid data
-    var submitBtn = document.getElementById("submitBtn");
-    if (submitBtn) {
-        submitBtn.disabled = true;
-    }
 }
 function indicateSuccess (msgID, elementDivID) {
     var msg = document.getElementById(msgID);
@@ -180,56 +175,46 @@ function indicateSuccess (msgID, elementDivID) {
 
     divStatus[elementDivID] = "has_success";
 
-    //allow the user to submit valid data
-    var submitBtn = document.getElementById("submitBtn");
-    if (submitBtn) {
-        submitBtn.disabled = false;
-    }
 }
 function resetForm () {
+    //divStatus is an object that holds the ids of each input div in the form and its status
     for (let key in divStatus) {
         if (divStatus.hasOwnProperty(key)) {
-
-            console.log(key + " -> " + divStatus[key]);
-            //this assumes the keys are all the id's of each form div
             var element = document.getElementById(key);
 
-            // set status
+            // set status back
             divStatus[key] = "default";
 
             //remove green checkmarks
             for (let el of element.getElementsByTagName("i")) {
                 el.classList.remove("show");
-                if (!el.classList.contains("hide")) {
-                    el.classList.add("hide");
-                }
+                el.classList.add("hide");
             }
 
             //remove error messages
             for (let el of element.getElementsByTagName("span")) {
                 el.classList.remove("show");
-                if (!el.classList.contains("hide")) {
-                    el.classList.add("hide");
-                }
+                el.classList.add("hide");
             }
 
             //set div to regular color
-            if (element.classList.contains("has-error")) {
-                element.classList.remove("has-error");
-            }else if (element.classList.contains("has-success")) {
-                element.classList.remove("has-success");
-            }
-
-            console.log(key + " -> " + divStatus[key]);
+            element.classList.remove("has-error");
+            element.classList.remove("has-success");
         }
     }
-
+    //Remove form error message
+    var subErr = document.getElementById("submitErr");
+    subErr.classList.remove("show");
+    subErr.classList.add("hide");
+    return false;
 }
 function checkForSuccess () {
     for (let key in divStatus) {
         if (divStatus.hasOwnProperty(key)) {
-            console.log(key + " -> " + divStatus[key]);
-            if (divStatus[key] != "has_success" ) {
+            if (divStatus[key] !== "has_success" ) {
+                var subErr = document.getElementById("submitErr");
+                subErr.classList.remove("hide");
+                subErr.classList.add("show");
                 return false;
             }
         }
