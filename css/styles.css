@@ -43,7 +43,9 @@
 .hobbies:hover {
     border-color: #f1f1f1;
 }
-
+.fa-check {
+    color: green;
+}
 #footer {
     clear:both;
     position: absolute;

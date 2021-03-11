@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -40,6 +41,7 @@
 
             <div class="form-group" id="usernameDiv">
               <label for="username">Username:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="username" name="username" class="form-control"
                      type="text" required="true"
                      onblur="checkLengths(6,50,this,'usernameDiv', 'usernameError');">
@@ -48,6 +50,7 @@
 
             <div class="form-group" id="passwordDiv">
               <label for="password">Password:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="password" name="password" class="form-control"
                      type="password" required="true"
                      onblur="checkLengths(8,50,this,'passwordDiv','passLengthErr');
@@ -61,6 +64,7 @@
 
             <div class="form-group" id="repeatPasswordDiv">
               <label for="repeatPassword">Repeat Password:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="repeatPassword" name="repeatPassword" class="form-control"
                      type="password" required="true"
                      onblur="matchPasswords();">
@@ -69,6 +73,7 @@
 
             <div class="form-group" id="firstNameDiv">
               <label for="firstname">First Name:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="firstname" name="firstname" class="form-control"
                      type="text" required="true"
                      onblur="checkLengths(-1,50,this,'firstNameDiv','firstNameErr');">
@@ -77,6 +82,7 @@
 
             <div class="form-group" id="lastNameDiv">
               <label for="lastname">Last Name:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="lastname" name="lastname" class="form-control"
                      type="text" required="true"
                      onblur="checkLengths(-1,50,this,'lastNameDiv','lastNameErr');">
@@ -85,6 +91,7 @@
 
             <div class="form-group" id="address1Div">
               <label for="address1">Address Line 1:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="address1" name="address1" class="form-control"
                      type="text" required="true"
                      onblur="checkLengths(-1,100,this,'address1Div','address1Err');">
@@ -93,6 +100,7 @@
 
             <div class="form-group" id="address2Div">
               <label for="address2">Address Line 2:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="address2" name="address2" class="form-control"
                      type="text"
                       onblur="checkLengths(-1,100,this,'address2Div','address2Err');">
@@ -101,6 +109,7 @@
 
             <div class="form-group" id="cityDiv">
               <label for="city">City:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="city" name="city" class="form-control"
                      type="text" required="true"
                       onblur="checkLengths(-1,50,this,'cityDiv','cityErr');">
@@ -112,8 +121,9 @@
           <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group" id="stateDiv">
               <label for="state">State:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <select id="state" name="state" class="form-control" required="true"
-                      onblur="checkLengths(-1,52,this,'stateDiv','stateErr');">
+                      onblur="checkLengths(-1,52,this,'stateDiv','');">
                 <option value="" selected="selected" hidden="hidden" disabled="disabled">
                   --Please Select--
                 </option>
@@ -173,17 +183,20 @@
 
             <div class="form-group" id="zipDiv">
               <label for="zip">Zip Code:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="zip" name="zip" class="form-control"
-                     type="number" required="true"
-                      onblur="checkLengths(5,10,this,'zipDiv','zipErr');
+                     type="text" required="true" placeholder="xxxxx or xxxxx-xxxx"
+                      onblur="checkLengths(5,10,this,'zipDiv','zipLengthErr');
                       adjustZip();">
-              <span id="zipErr" class="help-block hide">Must be between 5 and 10 digits!</span>
+              <span id="zipLengthErr" class="help-block hide">Must be between 5 and 10 digits!</span>
+              <span id="zipErr" class="help-block hide">Invalid zip code!</span>
             </div>
 
             <div class="form-group" id="phoneDiv">
               <label for="phone">Phone Number:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="phone" name="phone" class="form-control"
-                     type="number" required="true"
+                     type=text" required="true" placeholder="xxx-xxx-xxxx"
                       onblur="checkLengths(-1,12,this,'phoneDiv','phoneLengthErr');
                               adjustPhone();">
               <span id="phoneLengthErr" class="help-block hide">Max 12 characters!</span>
@@ -193,34 +206,43 @@
 
             <div class="form-group" id="emailDiv">
               <label for="email">Email:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="email" name="email" class="form-control"
-                     type="email" required="true"
+                     type="email" required="true" placeholder="x@x.x"
                       onblur="checkEmail();">
               <span id="emailVerError" class="help-block hide">Invalid Email!</span>
             </div>
 
-            <div class="form-group">
-              <label>Gender:</label><br>
-              <input type="radio" id="female" name="gender" value="female" required="true">
+            <div class="form-group" id="genderDiv">
+              <label>Gender:</label>
+              <i class="fa fa-check fa-md hide"></i><br>
+              <input type="radio" id="female" name="gender" value="female" required="true" maxlength="50"
+                      onclick="indicateSuccess('','genderDiv');">
               <label for="female">Female</label><br>
-              <input type="radio" id="male" name="gender" value="male" required="true">
+              <input type="radio" id="male" name="gender" value="male" required="true" maxlength="50"
+                      onclick="indicateSuccess('','genderDiv');">
               <label for="male">Male</label><br>
             </div>
 
-            <div class="form-group">
-              <label>Martial Status:</label><br>
-              <input type="radio" id="married" name="mstatus" value="married" required="true">
+            <div class="form-group" id="marriageStatus">
+              <label>Martial Status:</label>
+              <i class="fa fa-check fa-md hide"></i><br>
+              <input type="radio" id="married" name="mstatus" value="married" required="true" maxlength="50"
+                     onclick="indicateSuccess('','marriageStatus')">
               <label for="married">Married</label><br>
-              <input type="radio" id="divorced" name="mstatus" value="divorced" required="true">
+              <input type="radio" id="divorced" name="mstatus" value="divorced" required="true" maxlength="50"
+                     onclick="indicateSuccess('','marriageStatus')">
               <label for="divorced">Divorced</label><br>
-              <input type="radio" id="single" name="mstatus" value="single" required="true">
+              <input type="radio" id="single" name="mstatus" value="single" required="true" maxlength="50"
+                     onclick="indicateSuccess('','marriageStatus')">
               <label for="single">Single</label><br>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="DOBDiv">
               <label for="DOB">Date of Birth:</label>
+              <i class="fa fa-check fa-md hide"></i>
               <input id="DOB" name="DOB" class="form-control"
-                     type="date" required="true">
+                     type="date" required="true" oninput="indicateSuccess('','DOBDiv');">
             </div>
 
             <div class="form-group">

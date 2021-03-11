@@ -27,7 +27,7 @@ function checkPassword () {
 
     var regex =/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,50}$/;
 
-    if (regex.test(password)){
+    if (regex.test(password)) {
         indicateSuccess("passwordError", "passwordDiv");
         return true;
     }else {
@@ -36,7 +36,7 @@ function checkPassword () {
     }
 
 }
-function checkEmail (){
+function checkEmail () {
     var element = document.getElementById("email");
     var emailVal = String(element.value).trim();
 
@@ -53,61 +53,50 @@ function checkEmail (){
     }
 }
 function adjustZip () {
-    var zip = document.getElementById('zip');
-    var zipVal = zip.value;
+    var zipElem = document.getElementById("zip");
+    var zip = zipElem.value;
+    var regex = /^\s*(\d{5})[-. ]*(\d{4})?\s*$/;
 
-    if (zipVal.length > 5) {
-        var firstPart = zipVal.substring(0, 5);
+    if (regex.test(zip)) {
 
-        //in case the user put in their own '-' or it was already put in by a previous run of this function
-        var i = 5;
-        while (zipVal[i] === '-'){
-            i++;
+        var zipSections = zip.match(regex);
+        var adjustedZip= zipSections[1];
+
+        if (zipSections[2]) {
+            adjustedZip = adjustedZip + "-" + zipSections[2];
         }
-        var secondPart = zipVal.substring(i, zipVal.length);
 
-        document.getElementById('zip').type = 'text'; //necessary for the '-' and if the zip has letters
+        zipElem.value = adjustedZip;
 
-        document.getElementById('zip').value = firstPart + "-" + secondPart;
-    }else{
-        document.getElementById('zip').type = 'number';
+        indicateSuccess("zipErr", "zipDiv");
+        return true;
+    }else {
+        indicateError ("zipErr", "zipDiv");
+        return false;
     }
 }
 function adjustPhone () {
-    var phoneNum = document.getElementById('phone').value;
-    var phoneSections;
-    var adjustedPhone;
+    var phone = document.getElementById("phone");
+    var phoneNum = phone.value;
+    var regex = /^\s*[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})\s*$/;
 
-    if (phoneNum.length >= 7 ){
+     if (regex.test(phoneNum)) {
+         var phoneSections = phoneNum.match(regex);
+         phone.value = phoneSections[1] + "-" + phoneSections[2] + "-" + phoneSections[3];
 
-        if (phoneNum.length > 7){ //if the phone number does not match the standard American format of a three digit
-                                  //area code and then a 7 digit phone number, this does not bother to format it.
-            phoneSections = phoneNum.match(/(\d{3})(\d{3})(\d{4})/);
-            adjustedPhone = phoneSections[1] + "-" + phoneSections[2] + "-" + phoneSections[3];
-
-        } else { //its == 7
-            phoneSections = phoneNum.match(/(\d{3})(\d{4})/);
-            adjustedPhone = phoneSections[1] + "-" + phoneSections[2];
-        }
-        document.getElementById('phone').type = 'text'; //necessary for adding "-" but will check for numbers
-                                                                //with regex
-        document.getElementById('phone').value = adjustedPhone;
-
-        indicateSuccess("phoneErr", "phoneDiv");
-        return true;
-
+         indicateSuccess("phoneErr", "phoneDiv");
+         return true;
     }else {
         indicateError ("phoneErr", "phoneDiv");
         return false;
     }
 }
 
-function checkLengths (min, max, element, elementDivID, elementErrorID){
+function checkLengths (min, max, element, elementDivID, elementErrorID) {
     var inputLength = element.value.length;
 
-    if (max && min && inputLength && elementDivID && elementErrorID){
-
-        if (inputLength > max || inputLength < min){
+    if (max && min && inputLength) {
+        if (inputLength > max || inputLength < min) {
             indicateError(elementErrorID, elementDivID);
             return false;
 
@@ -119,7 +108,8 @@ function checkLengths (min, max, element, elementDivID, elementErrorID){
         return false;
     }
 }
-function indicateError (msgID, elementDivID){
+
+function indicateError (msgID, elementDivID) {
     var msg = document.getElementById(msgID);
     var elementDiv = document.getElementById(elementDivID);
 
@@ -130,8 +120,14 @@ function indicateError (msgID, elementDivID){
     }
     //make element div indicate error (red)
     if (elementDiv) {
+        //make div red
         elementDiv.classList.remove("has-success");
         elementDiv.classList.add("has-error");
+
+        //take away green checkmark
+        for (let el of elementDiv.getElementsByTagName("i")) {
+            el.classList.add("hide");
+        }
     }
 
     //Don't allow the user to submit invalid data
@@ -140,7 +136,7 @@ function indicateError (msgID, elementDivID){
         submitBtn.disabled = true;
     }
 }
-function indicateSuccess (msgID, elementDivID){
+function indicateSuccess (msgID, elementDivID) {
     var msg = document.getElementById(msgID);
     var elementDiv = document.getElementById(elementDivID);
 
@@ -151,8 +147,14 @@ function indicateSuccess (msgID, elementDivID){
     }
     //make element div indicate success
     if (elementDiv) {
+        //make div green
         elementDiv.classList.add("has-success");
         elementDiv.classList.remove("has-error");
+
+        //show green checkmark
+        for (let el of elementDiv.getElementsByTagName("i")) {
+            el.classList.remove("hide");
+        }
     }
 
     //allow the user to submit valid data
