@@ -173,7 +173,15 @@ function indicateSuccess (msgID, elementDivID) {
         }
     }
 
+    //set div status
     divStatus[elementDivID] = "has_success";
+
+    //remove submit error, if it was showing
+    var subErr = document.getElementById("submitErr");
+    if (subErr.classList.contains("show")) {
+        subErr.classList.remove("show");
+        subErr.classList.add("hide");
+    }
 
 }
 function resetForm () {
