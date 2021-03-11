@@ -196,9 +196,8 @@
               <i class="fa fa-check fa-md hide"></i>
               <input id="zip" name="zip" class="form-control"
                      type="text" required placeholder="xxxxx or xxxxx-xxxx"
-                      onblur="checkLengths(5,10,this,'zipDiv','zipLengthErr');
+                      onblur="checkLengths(5,10,this,'zipDiv','zipErr');
                       adjustZip();">
-              <span id="zipLengthErr" class="help-block hide">Must be between 5 and 10 digits!</span>
               <span id="zipErr" class="help-block hide">Invalid zip code!</span>
             </div>
 
