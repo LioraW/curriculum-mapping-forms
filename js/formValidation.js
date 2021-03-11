@@ -149,6 +149,8 @@ function indicateError (msgID, elementDivID) {
         }
     }
 
+    divStatus[elementDivID] = "has_error";
+
     //Don't allow the user to submit invalid data
     var submitBtn = document.getElementById("submitBtn");
     if (submitBtn) {
@@ -176,6 +178,8 @@ function indicateSuccess (msgID, elementDivID) {
         }
     }
 
+    divStatus[elementDivID] = "has_success";
+
     //allow the user to submit valid data
     var submitBtn = document.getElementById("submitBtn");
     if (submitBtn) {
@@ -185,6 +189,8 @@ function indicateSuccess (msgID, elementDivID) {
 function resetForm () {
     for (let key in divStatus) {
         if (divStatus.hasOwnProperty(key)) {
+
+            console.log(key + " -> " + divStatus[key]);
             //this assumes the keys are all the id's of each form div
             var element = document.getElementById(key);
 
@@ -193,6 +199,7 @@ function resetForm () {
 
             //remove green checkmarks
             for (let el of element.getElementsByTagName("i")) {
+                el.classList.remove("show");
                 if (!el.classList.contains("hide")) {
                     el.classList.add("hide");
                 }
@@ -217,4 +224,15 @@ function resetForm () {
         }
     }
 
+}
+function checkForSuccess () {
+    for (let key in divStatus) {
+        if (divStatus.hasOwnProperty(key)) {
+            console.log(key + " -> " + divStatus[key]);
+            if (divStatus[key] != "has_success" ) {
+                return false;
+            }
+        }
+    }
+    return true;
 }

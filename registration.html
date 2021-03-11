@@ -33,7 +33,7 @@
       <p><a href="registration.html">Registration</a></p>
       <p><a href="animations.html">Animations</a></p>
     </div>
-    <form method="POST">
+    <form method="POST" onsubmit="return checkForSuccess();">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="row content">
           <h3 class="main-content">Registration:</h3>
@@ -246,7 +246,7 @@
             </div>
 
             <div class="form-group">
-              <input type="submit" value="Submit" id="submitBtn" disabled="false">
+              <input type="submit" value="Submit" id="submitBtn" disabled="true" >
               <input type="reset" value="Reset" onclick="resetForm();">
             </div>
 
