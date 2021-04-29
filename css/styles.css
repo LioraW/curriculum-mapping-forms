@@ -42,7 +42,7 @@
 
 .hobbies:hover {border-color: #f1f1f1;}
 .fa-check {color: green;}
-#submitErr {color: red}
+.error {color: red;}
 
 #footer {
     clear:both;

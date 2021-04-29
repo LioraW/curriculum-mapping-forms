@@ -12,7 +12,7 @@ var divStatus = {
     phoneDiv: "default",
     emailDiv: "default",
     genderDiv: "default",
-    marriageStatus: "default",
+    marriageStatusDiv: "default",
     DOBDiv: "default",
 
 };
@@ -31,11 +31,11 @@ function matchPasswords() {
 
         //check if first and second match
         if (first.value !== second.value) {
-            indicateError("PassVerificationError", "repeatPasswordDiv");
+            indicateError("passVerificationError", "repeatPasswordDiv");
             return false;
 
         }else {
-            indicateSuccess("PassVerificationError", "repeatPasswordDiv");
+            indicateSuccess("passVerificationError", "repeatPasswordDiv");
             return true;
         }
     }
@@ -147,6 +147,8 @@ function indicateError (msgID, elementDivID) {
         for (let el of elementDiv.getElementsByTagName("i")) {
             el.classList.add("hide");
         }
+
+
     }
 
     divStatus[elementDivID] = "has_error";
@@ -219,11 +221,13 @@ function resetForm () {
 function checkForSuccess () {
     for (let key in divStatus) {
         if (divStatus.hasOwnProperty(key)) {
-            if (divStatus[key] !== "has_success" ) {
-                var subErr = document.getElementById("submitErr");
-                subErr.classList.remove("hide");
-                subErr.classList.add("show");
-                return false;
+            if (divStatus[key] !== "has_success") { //if any has an error or has not been filled out
+                if (!(key === "address2Div" && divStatus[key] === "default")) { //allow for optional address2
+                    var subErr = document.getElementById("submitErr");
+                    subErr.classList.remove("hide");
+                    subErr.classList.add("show");
+                    return false;
+                }
             }
         }
     }
