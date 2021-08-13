@@ -41,23 +41,9 @@
         <div class="col-xs-12 col-sm-12 col-md-6">
             <?php
                 $tabs = "&emsp;&emsp;&emsp;&emsp;";
-                echo "<h4><b>Username:</b> $username</h4></br>";
-                echo "<h4><b>Password:</b> $password</h4></br>";
-                echo "<h4><b>First Name:</b> $firstname</h4></br>";
-                echo "<h4><b>Last Name:</b> $lastname</h4></br>";
-                echo "<h4><b>Address:</b> $address1</h4>";
-                if ($address2) {echo "<h4>$tabs $address2</h4>";}
-                echo "<h4>$tabs $city, $state</h4>";
-                echo "<h4>$tabs $zip</h4>";
-            ?>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-            <?php
-                echo "<h4><b>Phone Number:</b> $phone</h4></br>";
-                echo "<h4><b>Email:</b> $email</h4></br>";
-                echo "<h4><b>Gender:</b> $gender</h4></br>";
-                echo "<h4><b>Marriage Status:</b> $marriageStatus</h4></br>";
-                echo "<h4><b>Date of Birth:</b> $DOB</h4></br>";
+                echo "<h4><b>Base:</b> $base</h4></br>";
+                echo "<h4><b>Topic:</b> $topic</h4></br>";
+                echo "<h4><b>Core Concept:</b> $coreConcept</h4></br>";
             ?>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <?php
     session_start();
     $servername = "localhost";
-    $dbname = "project";
+    $dbname = "curriculummapping";
     $connUserName = "root";
     $connPassword = "";
 ?>
